@@ -3,182 +3,18 @@
         <title>Spotlight Test</title>
         <link href="style.css" rel="stylesheet" />
         <script src="data.js"></script>
+        <script src="spotlight.js"></script>
     </head>
     <body>
         <div class="header">
             <div id="spotlight-container" class="content"></div>
         </div>
-
-
         <script>
+            var spotlight = new Spotlight({
+                data: data
+            });
 
-        (function(){
-          
-            Spotlight = function () {
-                this.initialize.apply(this, arguments);
-            }
-
-            var addClass = 
-
-            Spotlight.prototype = {
-
-                initialize: function () {
-                    this.options = {
-                        className: 'spotlight',
-                        searchBarEl: '<div class="input-container"></div>',
-                        listItemEl: '<li class="item"><div class="icon"></div><div class="description"></div></li>'
-                    }
-                    this.options = this.merge(this.options, arguments[0]);
-                    this.data = this.options.data;
-                    this.el = this.createElement(this.options.searchBarEl);
-                    this.input = this.createElement('<input type="text"></input>')
-                    this.el.appendChild(this.input);
-                    this.setup();
-                },
-
-                setup: function () {
-                    this.onInputFocus = this.bind(this, this.onInputFocus);
-                    this.onInputKeyup = this.bind(this, this.onInputKeyup);
-                    this.onInputBlur = this.bind(this, this.onInputBlur);
-
-                    this.input.addEventListener('focus', this.onInputFocus);
-                    this.input.addEventListener('keyup', this.onInputKeyup);
-                    this.input.addEventListener('blur', this.onInputBlur);
-                },
-
-                activate: function () {
-                    this.addClass(this.el, 'active');
-                },
-
-                deactivate: function () {
-                    this.removeClass(this.el, 'active');
-                },
-
-                render: function () {
-
-                },
-
-                parseData: function () {
-                    var hash = {};
-                    var array = [];
-
-                    for(type in this.data) {
-                        for(var i = 0, len = this.data[type].length; i < len; i++){
-
-                            this.data[type][i]
-                        }
-                    }
-
-                },
-
-                addItem: function () {
-
-                },
-
-                removeItem: function () {
-
-                },
-
-                onInputFocus: function () {
-                    this.activate();
-                },
-
-                onInputBlur: function () {
-                    this.deactivate();
-                },
-
-                onInputKeyup: function () {
-                    console.log('keyup');
-                },
-
-                // Merge two hashmaps together, latter attributes take precedence
-                merge: function (a, b) {
-                    for(prop in b){
-                        a[prop] = b[prop];
-                    }
-
-                    return a;
-
-                },
-
-                createElement: function (html) {
-                    var el = document.createElement('div');
-                    el.innerHTML = html;
-                    return el.childNodes[0];
-                },
-
-                addClass: function (el, className) {
-                    this.alterClass(el, className, true);
-                },
-
-                removeClass: function (el, className) {
-                    this.alterClass(el, className);
-                },
-
-                alterClass: function (el, className, add) {
-                    var classes = el.className.split(' ');
-                    var added = false;
-                    var removed = false;
-                    for(var i = 0, len = classes.length; i < len; i++){
-                        if(classes[i] == className){
-                            if(add){
-                                added = true;
-                                break;
-                            } else {
-                                classes.splice(i,1);
-                                break;
-                            }
-                        }
-                    }
-                    if(add && !added){
-                        classes.push(className);
-                    }
-                    el.className = classes.join(' ');
-                },
-
-                bind: function (context, fn) {
-                    return function () {
-                        fn.apply(context, arguments);
-                    }
-                }
-
-            }
-
-        }())
-
-        DataStructure = function () {
-            this.hash = {};
-            this.array = [];
-            this.count = 0;
-        }
-
-        DataStructure.prototype = {
-
-            add: function (value) {
-                this.hash[this.count.toString()] = value;
-                this.count++;
-            },
-
-            remove: function () {
-
-            },
-
-            get: function () {
-
-            },
-
-            toArray: function () {
-
-            }
-
-        }
-
-        var spotlight = new Spotlight({
-            data: data
-        });
-
-        document.getElementById("spotlight-container").appendChild(spotlight.el);
-
+            document.getElementById("spotlight-container").appendChild(spotlight.el);
         </script>
     </body>
 </html>
