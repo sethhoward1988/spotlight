@@ -1,0 +1,84 @@
+<script>
+
+(function(){
+  
+    Spotlight = function () {
+        this.initialize.apply(this, arguments);
+    }
+
+    Spotlight.prototype = {
+
+        initialize: function () {
+            this.options = {
+                className: 'spotlight',
+                searchBarEl: '<div class="input-container"><input type="text"></input></div>',
+                listItemEl: '<li class="item"><div class="icon"></div><div class="description"></div></li>'
+            }
+            this.options = this.merge(this.options, arguments);
+            this.data = this.options.data;
+            this.el = this.createElement(this.options.searchBarEl);
+        },
+
+        activate: function () {
+            this.el.className
+        },
+
+        deactivate: function () {
+
+        },
+
+        render: function () {
+
+        },
+
+        parseData: function () {
+
+        },
+
+        addItem: function () {
+
+        },
+
+        removeItem: function () {
+
+        },
+
+
+        // Merge two hashmaps together, latter attributes take precedence
+        merge: function (a, b) {
+            for(prop in b){
+                a[prop] = b[prop];
+            }
+
+            return a;
+
+        },
+
+        createElement: function (html) {
+            var el = document.createElement('div');
+            el.innerHTML = html;
+            return el.childNodes;
+        },
+
+        addClass: function (el, className) {
+            this.alterClass(el, className, true);
+        },
+
+        removeClass: function (el, className) {
+            this.alterClass(el, className);
+        }
+
+        alterClass: function (el, className, add) {
+            var classes = el.split(' ');
+            var added = false;
+            var removed = false;
+            for(var i = 0, len = classes.length, i < len; i++){
+                if()
+            }
+        }
+
+    }
+
+}())
+
+</script>
